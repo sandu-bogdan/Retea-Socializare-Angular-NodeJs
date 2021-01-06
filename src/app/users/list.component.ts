@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { AccountService, AlertService } from '@app/_services';
 import { User } from '@app/_models';
+import { ReplaySubject } from 'rxjs';
 
 @Component({ templateUrl: 'list.component.html' })
 export class ListComponent implements OnInit {
@@ -41,12 +42,23 @@ export class ListComponent implements OnInit {
 
 
     like(id: string, username: string, likeDB: string) {
-        
-        //localStorage.setItem('likeStorage', username);
-        localStorage["likeStorage"] = JSON.stringify(username);
-        //this.isLiking = true;
+
+        if(localStorage.getItem("likeStorage")){
+            localStorage.setItem('likeStorage', id + ',' + localStorage.getItem("likeStorage"));
+            
+        }
+        else 
+        {
+            localStorage.setItem('likeStorage', id);
+        }
+            
         
         if(likeDB == this.userLocal.username){
+            localStorage.setItem('likeStorage', localStorage.getItem("likeStorage").replace(/1,/gi,""))
+
+           
+
+
             this.accountService.update(id, { like: '0' })
             .pipe(first())
             .subscribe(() => {
