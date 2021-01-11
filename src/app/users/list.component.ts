@@ -40,26 +40,24 @@ export class ListComponent implements OnInit {
             });
     }
 
+    statusLike(id: string){
+        var getLocalStorageLike = localStorage.getItem("likeStorage");
+        var likeStatus = getLocalStorageLike.search('#' + id + ','); 
+        return likeStatus; 
+    }
 
     like(id: string, username: string, likeDB: string) {
-
-        if(localStorage.getItem("likeStorage")){
-            localStorage.setItem('likeStorage', id + ',' + localStorage.getItem("likeStorage"));
-            
-        }
-        else 
-        {
-            localStorage.setItem('likeStorage', id);
-        }
-            
         
-        if(likeDB == this.userLocal.username){
-            localStorage.setItem('likeStorage', localStorage.getItem("likeStorage").replace(/1,/gi,""))
+        if(this.statusLike(id) != -1){
 
-           
+            var inlocuire = localStorage.getItem("likeStorage");
+            var inlocuit = inlocuire.replace('#' + id + ',',"");
+            localStorage.setItem("likeStorage", inlocuit)
+         
+        
+            var sendLikeDB = likeDB.replace('#' + this.userLocal.id + ',',"")
 
-
-            this.accountService.update(id, { like: '0' })
+            this.accountService.update(id, { like: sendLikeDB })
             .pipe(first())
             .subscribe(() => {
                 //this.alertService.success('Unlike successful', { keepAfterRouteChange: true });
@@ -71,7 +69,15 @@ export class ListComponent implements OnInit {
                 }) 
         }
         else {
-        this.accountService.update(id, { like: username })
+
+           
+                localStorage.setItem('likeStorage', '#' + id + ',' + localStorage.getItem("likeStorage"));
+                
+            
+                
+        
+        //this.accountService.update(id, { like: '#' + username + ','})
+        this.accountService.update(id, { like: likeDB + '#' + this.userLocal.id + ','})
         .pipe(first())
             .subscribe(() => {
                 //this.alertService.success('Like successful', { keepAfterRouteChange: true });

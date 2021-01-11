@@ -22,8 +22,8 @@
                 <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
                 
                 <button (click)="like(user.id,userLocal.username,user.like)" class="btn btn-sm btn-primary mr-1">
-                   <span *ngIf="user.like==userLocal.username"><i class="fas fa-heart"></i></span>
-                   <span *ngIf="user.like!=userLocal.username"><i class="far fa-heart"></i></span>
+                   <span *ngIf="statusLike(user.id)!=-1"><i class="fas fa-heart"></i></span>
+                   <span *ngIf="statusLike(user.id)==-1"><i class="far fa-heart"></i></span>
                 </button>
 
                 <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="user.isDeleting">
