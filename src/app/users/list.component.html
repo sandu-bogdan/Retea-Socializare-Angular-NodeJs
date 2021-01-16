@@ -3,11 +3,13 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th style="width: 17%">First Name</th>
-            <th style="width: 17%">Last Name</th>
-            <th style="width: 17%">Username</th>
-            <th style="width: 17%">Description</th>
-            <th style="width: 17%">Like</th>
+            <th style="width: 14%">First Name</th>
+            <th style="width: 14%">Last Name</th>
+            <th style="width: 14%">Username</th>
+            <th style="width: 14%">Long description</th>
+            <th style="width: 14%">Short description</th>
+            <th style="width: 14%">Photo</th>
+            <th style="width: 14%">Like</th>
             <th style="width: 15%"></th>
         </tr>
     </thead>
@@ -17,7 +19,9 @@
             <td>{{user.lastName}}</td>
             <td>{{user.username}}</td>
             <td>{{user.description}}</td>
-            <td>{{user.like}}</td>
+            <td>{{user.shortDescription}}</td>
+            <td>{{user.photo}}</td>
+            <td>{{likeNumber(user.like)}}</td>
             <td style="white-space: nowrap">
                 <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
                 
@@ -26,10 +30,14 @@
                    <span *ngIf="statusLike(user.id)==-1"><i class="far fa-heart"></i></span>
                 </button>
 
+                <button class="btn btn-sm btn-primary mr-1" routerLink="/user-post-details/{{user.id}}">Show
+                </button>
+
                 <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="user.isDeleting">
                     <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
                     <span *ngIf="!user.isDeleting">Delete</span>
                 </button>
+                
             </td>
         </tr>
         <tr *ngIf="!users">

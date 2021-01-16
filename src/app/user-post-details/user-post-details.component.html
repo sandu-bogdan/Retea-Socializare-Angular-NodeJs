@@ -1,1 +1,30 @@
-<p>user-post-details works!</p>
+<div  *ngFor="let user of users">
+<span *ngIf="user.id==idUrl">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-8">
+                <h1 class="title"> {{user.shortDescription}} </h1>
+                <br> Posted by <strong>{{user.firstName}}.</strong>
+                <br>
+                <span class="description">
+                {{user.description}}
+            </span>
+            <br><br>
+            
+            <button routerLink="/"><i class="fas fa-arrow-left"></i> Back to feed</button>
+            <button (click)="like(idUrl,user.username,user.like)"> {{likeNumber(user.like)}} Like 
+                <span *ngIf="statusLike(user.id)!=-1"><i class="fas fa-heart" style="color:red"></i></span>
+                <span *ngIf="statusLike(user.id)==-1"><i class="far fa-heart"></i></span>
+            </button>
+            <button *ngIf="idUrl==userLocal.id"routerLink="/users/edit/{{idUrl}}"> Edit post <i class="far fa-edit"></i></button>
+            </div>
+            <div class="col-4">
+                <img class="photo" src="/assets/{{user.photo}}.jpg" alt="Brohm Lake">
+
+
+            </div>
+        </div>
+    </div>
+</span>
+</div>
+

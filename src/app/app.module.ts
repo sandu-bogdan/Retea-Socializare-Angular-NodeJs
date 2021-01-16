@@ -14,9 +14,9 @@ import { HomeComponent } from './home';;
 import { HeaderComponent } from './header/header.component';
 import { CardComponent } from './card/card.component';
 import { ContinutComponent } from './continut/continut.component';;
-import { UserPostDetailsComponent } from './user-post-details/user-post-details.component'
-;
-import { FeedComponent } from './feed/feed.component'
+import { UserPostDetailsComponent } from './user-post-details/user-post-details.component';
+import { FeedComponent } from './feed/feed.component';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
     imports: [
         BrowserModule,
@@ -33,7 +33,8 @@ import { FeedComponent } from './feed/feed.component'
         ContinutComponent ,
         UserPostDetailsComponent ,
         FeedComponent
-    ],
+,
+        FooterComponent    ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

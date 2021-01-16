@@ -34,6 +34,8 @@ export class AddEditComponent implements OnInit {
         this.form = this.formBuilder.group({
             firstName: ['', Validators.required],
             Description: ['', Validators.required],
+            ShortDescription: ['', Validators.required],
+            photo: ['', Validators.required],
             lastName: ['', Validators.required],
             username: ['', Validators.required],
             password: ['', passwordValidators]
@@ -45,6 +47,8 @@ export class AddEditComponent implements OnInit {
                 .subscribe(x => {
                     this.f.firstName.setValue(x.firstName);
                     this.f.Description.setValue(x.description);
+                    this.f.ShortDescription.setValue(x.shortDescription);
+                    this.f.photo.setValue(x.photo);
                     this.f.lastName.setValue(x.lastName);
                     this.f.username.setValue(x.username);
                 });
@@ -79,7 +83,7 @@ export class AddEditComponent implements OnInit {
             .subscribe(
                 data => {
                     this.alertService.success('User added successfully', { keepAfterRouteChange: true });
-                    this.router.navigate(['.', { relativeTo: this.route }]);
+                    this.router.navigate(['..', { relativeTo: this.route }]);
                 },
                 error => {
                     this.alertService.error(error);
@@ -93,7 +97,7 @@ export class AddEditComponent implements OnInit {
             .subscribe(
                 data => {
                     this.alertService.success('Update successful', { keepAfterRouteChange: true });
-                    this.router.navigate(['..', { relativeTo: this.route }]);
+                    this.router.navigate(['']);
                 },
                 error => {
                     this.alertService.error(error);

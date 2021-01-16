@@ -1,40 +1,45 @@
 <!-- flip-card-container -->
 <div  *ngFor="let user of users" class="flip-card-container" style="--hue: 220">
-    <div class="flip-card">
-  
-      <div class="card-front">
-        <figure>
-          <div class="img-bg"></div>
-          <img src="https://images.unsplash.com/photo-1486162928267-e6274cb3106f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Brohm Lake">
-          <figcaption>{{ user.username }} </figcaption>
-        </figure>
-        {{user.description}}
-      </div>
-  
-      <div class="card-back">
-        <figure>
-          <div class="img-bg"></div>
-          <img src="/assets/01.jpg" alt="Brohm Lake">
-        </figure>
-  
-        <button>Vezi postarea</button>
-        <button>like <i class="far fa-heart"></i></button>
-  
-        <div class="design-container">
-          <span class="design design--1"></span>
-          <span class="design design--2"></span>
-          <span class="design design--3"></span>
-          <span class="design design--4"></span>
-          <span class="design design--5"></span>
-          <span class="design design--6"></span>
-          <span class="design design--7"></span>
-          <span class="design design--8"></span>
-        </div>
-      </div>
-  
+  <div class="flip-card">
+
+    <div class="card-front">
+      <figure>
+        <div class="img-bg"></div>
+        <img src="https://images.unsplash.com/photo-1486162928267-e6274cb3106f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Brohm Lake">
+        <figcaption>{{ user.username }} </figcaption>
+      </figure>
+      <p style="margin:5%; text-align: justify;"> {{user.shortDescription}}</p>
     </div>
+
+    <div class="card-back">
+
+      <button routerLink="/user-post-details/{{user.id}}">Vezi postarea</button>
+      <button (click)="like(user.id,userLocal.username,user.like)">{{likeNumber(user.like)}} like 
+        <span *ngIf="statusLike(user.id)!=-1"><i class="fas fa-heart" style="color:red"></i></span>
+        <span *ngIf="statusLike(user.id)==-1"><i class="far fa-heart"></i></span>
+        </button>
+
+      <figure>
+        <div class="img-bg"></div>
+        <img src="/assets/{{user.photo}}.jpg" alt="Brohm Lake">
+      </figure>
+
+   
+
+      <div class="design-container">
+        <span class="design design--1"></span>
+        <span class="design design--2"></span>
+        <span class="design design--3"></span>
+        <span class="design design--4"></span>
+        <span class="design design--5"></span>
+        <span class="design design--6"></span>
+        <span class="design design--7"></span>
+        <span class="design design--8"></span>
+      </div>
+    </div>
+
   </div>
-  <!-- /flip-card-container -->
-  
-  
-  
+</div>
+<!-- /flip-card-container -->
+
+

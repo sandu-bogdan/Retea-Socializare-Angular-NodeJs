@@ -40,11 +40,30 @@ export class ListComponent implements OnInit {
             });
     }
 
+ 
+
+
     statusLike(id: string){
+        if(!(localStorage.getItem("likeStorage"))){
+            localStorage.setItem("likeStorage","")
+        }
         var getLocalStorageLike = localStorage.getItem("likeStorage");
         var likeStatus = getLocalStorageLike.search('#' + id + ','); 
         return likeStatus; 
     }
+
+    likeNumber(id: string){
+        //var count : number = (id.split(",").length - 1);
+        
+        var count = (id.split(",").length - 1)
+        if(count){
+            return count
+        }
+        else{
+            return '0'
+        }
+    }
+
 
     like(id: string, username: string, likeDB: string) {
         
