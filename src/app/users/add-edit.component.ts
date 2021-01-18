@@ -36,6 +36,7 @@ export class AddEditComponent implements OnInit {
             Description: ['', Validators.required],
             ShortDescription: ['', Validators.required],
             photo: ['', Validators.required],
+            location: ['', Validators.required],
             lastName: ['', Validators.required],
             username: ['', Validators.required],
             password: ['', passwordValidators]
@@ -49,6 +50,7 @@ export class AddEditComponent implements OnInit {
                     this.f.Description.setValue(x.description);
                     this.f.ShortDescription.setValue(x.shortDescription);
                     this.f.photo.setValue(x.photo);
+                    this.f.location.setValue(x.location);
                     this.f.lastName.setValue(x.lastName);
                     this.f.username.setValue(x.username);
                 });

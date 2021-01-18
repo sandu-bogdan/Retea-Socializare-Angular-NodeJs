@@ -12,21 +12,22 @@ export class HomeComponent {
     constructor(
         private accountService: AccountService,
         private http: HttpClient,
-        private weather: Weather) {
+        private weather: Weather
+        ) {
         this.user = this.accountService.userValue;
     }
 
     ngOnInit() {}
     getRawData(location: string) {
+      this.ngOnInit();
         this.weather
           .getRawData(location)
           .subscribe(
             data => this.rawlist=data,
             error => console.log(error)
           );
+         
       }
-
-    
 
     
 }

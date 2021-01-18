@@ -1,15 +1,16 @@
 ﻿<h1>Users</h1>
-<a routerLink="add" class="btn btn-sm btn-success mb-2">Add User</a>
+<a routerLink="add" *ngIf="userLocal.id=='1'" class="btn btn-sm btn-success mb-2">Add User</a>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th style="width: 14%">First Name</th>
-            <th style="width: 14%">Last Name</th>
-            <th style="width: 14%">Username</th>
-            <th style="width: 14%">Long description</th>
-            <th style="width: 14%">Short description</th>
-            <th style="width: 14%">Photo</th>
-            <th style="width: 14%">Like</th>
+            <th style="width: 10%">First Name</th>
+            <th style="width: 10%">Last Name</th>
+            <th style="width: 10%">Username</th>
+            <th style="width: 10%">Long description</th>
+            <th style="width: 10%">Short description</th>
+            <th style="width: 10%">Photo</th>
+            <th style="width: 10%">Location</th>
+            <th style="width: 10%">Like</th>
             <th style="width: 15%"></th>
         </tr>
     </thead>
@@ -20,20 +21,21 @@
             <td>{{user.username}}</td>
             <td>{{user.description}}</td>
             <td>{{user.shortDescription}}</td>
-            <td>{{user.photo}}</td>
-            <td>{{likeNumber(user.like)}}</td>
+            <td><a href={{user.photo}}><i class="fas fa-image"></i></a> </td>
+            <td>{{user.location}}</td>
+            <td>{{likeNumber(user.like)}} like </td>
             <td style="white-space: nowrap">
-                <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+                <a *ngIf="userLocal.id=='1'" routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
                 
                 <button (click)="like(user.id,userLocal.username,user.like)" class="btn btn-sm btn-primary mr-1">
                    <span *ngIf="statusLike(user.id)!=-1"><i class="fas fa-heart"></i></span>
                    <span *ngIf="statusLike(user.id)==-1"><i class="far fa-heart"></i></span>
                 </button>
 
-                <button class="btn btn-sm btn-primary mr-1" routerLink="/user-post-details/{{user.id}}">Show
+                <button class="btn btn-sm btn-primary mr-1" routerLink="/user-post-details/{{user.id}}"><i class="far fa-eye"></i>
                 </button>
 
-                <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="user.isDeleting">
+                <button *ngIf="userLocal.id=='1'" (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="user.isDeleting">
                     <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
                     <span *ngIf="!user.isDeleting">Delete</span>
                 </button>
@@ -41,7 +43,7 @@
             </td>
         </tr>
         <tr *ngIf="!users">
-            <td colspan="4" class="text-center">
+            <td colspan="9" class="text-center">
                 <span class="spinner-border spinner-border-lg align-center"></span>
             </td>
         </tr>

@@ -1,8 +1,12 @@
 
-<nav>
-    <a href="#">Bogdan</a>
-    <a href="#"><img class="photo-pic" src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" style="width:40px; vertical-align: middle; "></a>
-    <a href="#">Noutati</a>
-    <a href="#">Logout</a>
-    
-  </nav>
+<div class="color">
+<nav class="navbar navbar-expand" *ngIf="user">
+  <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><i class="far fa-newspaper"></i> News</a>
+      <a class="nav-item nav-link" routerLink="/users/edit/{{user.id}}" routerLinkActive="active"><i class="far fa-user-circle"></i> My profile</a>
+      <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active"><i class="fas fa-users"></i> Users</a>
+      <a class="nav-item nav-link" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </div>
+
+</nav>
+</div>

@@ -1,9 +1,9 @@
 ﻿<div class="p-4">
     <div class="container">
-        <h1 class="title">Bine ai venit, {{user.firstName}}!</h1>
+        <h1 class="title">Welcome user, {{user.firstName}}!</h1>
        
 
-       Vremea curenta in <strong>{{getRawData('Cobadin')}} {{rawlist}}</strong>
+        Current weather in <strong>{{getRawData(user.location)}} {{rawlist}}</strong><br>
         <br>
     </div>
 </div>
