@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-8">
                 <h1 class="title"> {{user.shortDescription}} </h1>
-                <br> Posted by <strong>{{user.firstName}}.</strong>
+                <br> Posted by <strong>{{user.firstName}}</strong> from <strong>{{user.location}}.</strong>
                 <br>
                 <span class="description">
                 {{user.description}}
@@ -19,7 +19,7 @@
             <button *ngIf="idUrl==userLocal.id"routerLink="/users/edit/{{idUrl}}"> Edit post <i class="far fa-edit"></i></button>
             </div>
             <div class="col-4">
-                <img class="photo" src="/assets/{{user.photo}}.jpg" alt="Brohm Lake">
+                <img class="photo" src="{{user.photo}}">
 
 
             </div>
